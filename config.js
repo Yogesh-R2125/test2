@@ -42,12 +42,12 @@ const CONFIG = {
       question: "What is the initial letter of the girl who stole Dharsan's heart?",
       options: [
         "Letter A",
-        "Letter D",
         "Letter S",
+        "Letter D",
         "Letter M"
       ],
-      correctIndex: 1,
-      hint: "It begins with D... and ends with an 'i'!"
+      correctIndex: 2,
+      hint: "It ends with an 'i'!"
     }
   ],
 
