@@ -112,7 +112,7 @@ const CONFIG = {
 
   // WhatsApp response config
   whatsapp: {
-    phoneNumber: "", // Dharsan can put his phone number here! e.g. 919876543210
+    phoneNumber: "918973488089", // Dharsan can put his phone number here! e.g. 919876543210
     customMessage: "Yes Dharsan! I unlocked your mystery website and I say YES! ❤️✨ I love you!"
   }
 };

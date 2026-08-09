@@ -1,6 +1,6 @@
 /**
- * MAIN INTERACTIVE SCRIPT FOR PROPOSAL EXPERIENCE
- * Built for Dharsan & Dharsini
+ * MAIN INTERACTIVE SCRIPT FOR DHARSAN & DHARSHANI PROPOSAL EXPERIENCE
+ * Mobile-Optimized with Web Audio Synthesizer, Evasive Button Physics, and Fireworks
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -55,15 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function playStarSparkleNote(index) {
-    const scale = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25]; // C major scale
+    const scale = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25, 587.33]; // C major scale
     const note = scale[index % scale.length];
-    playTone(note, 'triangle', 0.4, 0.3);
+    playTone(note, 'triangle', 0.35, 0.3);
   }
 
   function playCelebrationMelody() {
     const notes = [523.25, 659.25, 783.99, 1046.50, 783.99, 1046.50];
     notes.forEach((freq, i) => {
-      setTimeout(() => playTone(freq, 'sine', 0.4, 0.3), i * 150);
+      setTimeout(() => playTone(freq, 'sine', 0.4, 0.3), i * 140);
     });
   }
 
@@ -146,7 +146,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const btn = document.createElement('button');
       btn.className = 'option-btn';
       btn.innerHTML = `<span>${optText}</span> <i class="fa-regular fa-circle"></i>`;
-      btn.addEventListener('click', () => selectRiddleOption(btn, optIdx, data.correctIndex, data.hint));
+      
+      const handleSelect = (e) => {
+        e.preventDefault();
+        selectRiddleOption(btn, optIdx, data.correctIndex, data.hint);
+      };
+
+      btn.addEventListener('click', handleSelect);
       riddleOptions.appendChild(btn);
     });
   }
@@ -154,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function selectRiddleOption(btnElement, selectedIdx, correctIdx, hintText) {
     initAudio();
 
-    // Disable all options in box
     const allBtns = riddleOptions.querySelectorAll('.option-btn');
     
     if (selectedIdx === correctIdx) {
@@ -166,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       btnElement.classList.add('selected-wrong');
       btnElement.querySelector('i').className = 'fa-solid fa-circle-xmark';
-      playTone(180, 'sawtooth', 0.3, 0.2); // buzz
+      playTone(180, 'sawtooth', 0.25, 0.2);
       riddleHintText.innerText = hintText;
       riddleHintBox.style.display = 'block';
     }
@@ -177,13 +182,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (currentRiddleIndex < CONFIG.riddles.length) {
       renderRiddle(currentRiddleIndex);
     } else {
-      // Proceed to Chapter 2
       setChapter(2);
       renderPolaroidGrid();
     }
   });
 
-  // Render initial riddle
   renderRiddle(0);
 
   // =========================================================================
@@ -201,12 +204,11 @@ document.addEventListener('DOMContentLoaded', () => {
     CONFIG.memories.forEach((mem, idx) => {
       const card = document.createElement('div');
       card.className = 'polaroid-card';
-      
-      const rot = (idx % 2 === 0 ? 1 : -1) * (3 + idx * 2);
+      const rot = (idx % 2 === 0 ? 1 : -1) * (2 + idx);
 
       card.innerHTML = `
         <div class="polaroid-inner">
-          <div class="polaroid-front" style="--rotation: ${rot}">
+          <div class="polaroid-front" style="transform: rotate(${rot}deg)">
             <div class="polaroid-icon">${mem.icon}</div>
             <div class="polaroid-title">${mem.title}</div>
             <div class="polaroid-sub">${mem.date}</div>
@@ -217,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
 
-      card.addEventListener('click', () => {
+      const flipCard = () => {
         if (!card.classList.contains('flipped')) {
           card.classList.add('flipped');
           playTone(400 + idx * 60, 'sine', 0.2, 0.2);
@@ -226,11 +228,12 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
               playSuccessChime();
               unlockBanner.style.display = 'block';
-            }, 600);
+            }, 500);
           }
         }
-      });
+      };
 
+      card.addEventListener('click', flipCard);
       polaroidGrid.appendChild(card);
     });
   }
@@ -241,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================================
-  // CHAPTER 3: CONSTELLATION STAR PUZZLE
+  // CHAPTER 3: CONSTELLATION STAR PUZZLE (D-H-A-R-S-H-A-N-I)
   // =========================================================================
   const letterSlotsContainer = document.getElementById('letterSlotsContainer');
   const starOrbitField = document.getElementById('starOrbitField');
@@ -255,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toProposalBtn.style.display = 'none';
     constellationHint.style.display = 'block';
 
-    const target = CONFIG.targetLetters; // ["D", "H", "A", "R", "S", "I", "N", "I"]
+    const target = CONFIG.targetLetters; // ["D", "H", "A", "R", "S", "H", "A", "N", "I"]
 
     // Render Slots
     target.forEach(() => {
@@ -265,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
       letterSlotsContainer.appendChild(slot);
     });
 
-    // Create Shuffled Star Nodes
+    // Shuffled Letters
     const shuffledLetters = [...target].sort(() => Math.random() - 0.5);
 
     shuffledLetters.forEach((letter, i) => {
@@ -273,15 +276,16 @@ document.addEventListener('DOMContentLoaded', () => {
       star.className = 'star-node';
       star.innerText = '★';
 
-      // Random position inside container
-      const posX = 10 + Math.random() * 75;
-      const posY = 15 + Math.random() * 65;
+      // Distribute nicely within bounds
+      const posX = 6 + Math.random() * 78;
+      const posY = 10 + Math.random() * 70;
 
       star.style.left = `${posX}%`;
       star.style.top = `${posY}%`;
-      star.style.animationDelay = `${i * 0.4}s`;
+      star.style.animationDelay = `${i * 0.3}s`;
 
-      star.addEventListener('click', () => {
+      const collectStar = (e) => {
+        e.preventDefault();
         if (star.classList.contains('collected')) return;
 
         star.classList.add('collected');
@@ -290,28 +294,27 @@ document.addEventListener('DOMContentLoaded', () => {
         collectedLetters.push(letter);
         const currentCount = collectedLetters.length;
 
-        // Sound effect
         playStarSparkleNote(currentCount - 1);
 
-        // Fill slot
         const slots = letterSlotsContainer.querySelectorAll('.letter-slot');
         if (slots[currentCount - 1]) {
           slots[currentCount - 1].innerText = target[currentCount - 1];
           slots[currentCount - 1].classList.add('filled');
         }
 
-        // Check completion
         if (currentCount === target.length) {
           setTimeout(() => {
             playSuccessChime();
-            constellationHint.innerText = `✨ Mystery Name Unlocked: ${CONFIG.girlName}! ✨`;
+            constellationHint.innerText = `✨ Secret Name Unlocked: ${CONFIG.girlName}! ✨`;
             constellationHint.style.color = '#ffd700';
             constellationHint.style.fontWeight = '700';
             toProposalBtn.style.display = 'inline-flex';
-          }, 400);
+          }, 350);
         }
-      });
+      };
 
+      star.addEventListener('click', collectStar);
+      star.addEventListener('touchstart', collectStar, { passive: false });
       starOrbitField.appendChild(star);
     });
   }
@@ -322,7 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================================
-  // CHAPTER 4: LOVE LETTER & RUNAWAY NO BUTTON
+  // CHAPTER 4: LOVE LETTER & MOBILE-FRIENDLY RUNAWAY NO BUTTON
   // =========================================================================
   const envelopeWrapper = document.getElementById('envelopeWrapper');
   const letterCard = document.getElementById('letterCard');
@@ -360,46 +363,40 @@ document.addEventListener('DOMContentLoaded', () => {
     letterCard.style.display = 'none';
   }
 
-  // Click Envelope to Open
   envelopeWrapper.addEventListener('click', () => {
     playSuccessChime();
     envelopeWrapper.style.display = 'none';
     letterCard.style.display = 'block';
   });
 
-  // Runaway "No" Button Logic
+  // Evasive No Button dodge calculation for Mobile & Desktop
   function evadeNoButton(e) {
-    const wrapperRect = noBtnWrapper.getBoundingClientRect();
-    const btnRect = noBtn.getBoundingClientRect();
+    if (e) e.preventDefault();
 
-    // Calculate random escape position
-    const offsetX = (Math.random() - 0.5) * 260;
-    const offsetY = (Math.random() - 0.5) * 160;
+    const maxDistX = Math.min(130, window.innerWidth * 0.35);
+    const maxDistY = Math.min(90, window.innerHeight * 0.2);
+
+    const offsetX = (Math.random() - 0.5) * maxDistX * 2;
+    const offsetY = (Math.random() - 0.5) * maxDistY * 2;
 
     noBtn.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-    playTone(300 + Math.random() * 200, 'sine', 0.15, 0.15);
+    playTone(320 + Math.random() * 180, 'sine', 0.15, 0.15);
 
-    // Show humorous tooltip
     noTooltip.innerText = CONFIG.proposal.noTooltips[tooltipIndex % CONFIG.proposal.noTooltips.length];
     noTooltip.classList.add('show');
     tooltipIndex++;
 
     setTimeout(() => {
       noTooltip.classList.remove('show');
-    }, 1500);
+    }, 1400);
   }
 
   noBtn.addEventListener('mouseover', evadeNoButton);
-  noBtn.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    evadeNoButton(e);
-  });
-  noBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    evadeNoButton(e);
-  });
+  noBtn.addEventListener('pointerdown', evadeNoButton);
+  noBtn.addEventListener('touchstart', evadeNoButton, { passive: false });
+  noBtn.addEventListener('click', evadeNoButton);
 
-  // "YES!" Button Click -> Celebration
+  // YES Button Click
   yesBtn.addEventListener('click', () => {
     playCelebrationMelody();
     startFireworks();
@@ -407,7 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================================
-  // CELEBRATION MODAL & WHATSAPP INTEGRATION
+  // CELEBRATION MODAL & WHATSAPP LINK
   // =========================================================================
   const celebrationModal = document.getElementById('celebrationModal');
   const whatsappBtn = document.getElementById('whatsappBtn');
@@ -416,9 +413,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function openCelebrationModal() {
     celebrationModal.classList.add('active');
 
-    // Build WhatsApp URL
     let phone = CONFIG.whatsapp.phoneNumber.replace(/[^0-9]/g, '');
-    if (!phone) phone = '919000000000'; // Default placeholder
+    if (!phone) phone = '918973488089';
 
     const message = encodeURIComponent(CONFIG.whatsapp.customMessage);
     const waUrl = `https://wa.me/${phone}?text=${message}`;
@@ -435,17 +431,18 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // =========================================================================
-  // STARFIELD BACKGROUND ANIMATION CANVAS
+  // STARFIELD ANIMATION
   // =========================================================================
   const starCanvas = document.getElementById('starfieldCanvas');
   const starCtx = starCanvas.getContext('2d');
-
   let stars = [];
+
   function resizeStarfield() {
     starCanvas.width = window.innerWidth;
     starCanvas.height = window.innerHeight;
     stars = [];
-    for (let i = 0; i < 140; i++) {
+    const count = Math.min(130, Math.floor(window.innerWidth / 4));
+    for (let i = 0; i < count; i++) {
       stars.push({
         x: Math.random() * starCanvas.width,
         y: Math.random() * starCanvas.height,
@@ -477,7 +474,7 @@ document.addEventListener('DOMContentLoaded', () => {
   drawStarfield();
 
   // =========================================================================
-  // FIREWORKS CANVAS ANIMATION ENGINE
+  // FIREWORKS CANVAS ENGINE
   // =========================================================================
   const fwCanvas = document.getElementById('fireworksCanvas');
   const fwCtx = fwCanvas.getContext('2d');
@@ -492,10 +489,10 @@ document.addEventListener('DOMContentLoaded', () => {
   resizeFireworks();
 
   function createExplosion(x, y) {
-    const colors = ['#ff2a6d', '#ffd700', '#ff758c', '#00f2fe', '#4facfe', '#ffffff'];
-    for (let i = 0; i < 60; i++) {
+    const colors = ['#ff2a6d', '#ffd700', '#ff758c', '#00f2fe', '#ffffff'];
+    for (let i = 0; i < 50; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = 2 + Math.random() * 6;
+      const speed = 2 + Math.random() * 5;
       particles.push({
         x: x,
         y: y,
@@ -503,8 +500,8 @@ document.addEventListener('DOMContentLoaded', () => {
         vy: Math.sin(angle) * speed,
         color: colors[Math.floor(Math.random() * colors.length)],
         alpha: 1,
-        life: 0.95 + Math.random() * 0.03,
-        size: 2 + Math.random() * 3
+        life: 0.94 + Math.random() * 0.03,
+        size: 2 + Math.random() * 2.5
       });
     }
   }
@@ -512,11 +509,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function animateFireworks() {
     if (!fireworksRunning) return;
 
-    fwCtx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+    fwCtx.fillStyle = 'rgba(0, 0, 0, 0.16)';
     fwCtx.fillRect(0, 0, fwCanvas.width, fwCanvas.height);
 
-    // Random fireworks trigger
-    if (Math.random() < 0.1) {
+    if (Math.random() < 0.12) {
       createExplosion(
         Math.random() * fwCanvas.width,
         Math.random() * (fwCanvas.height * 0.6)
@@ -526,7 +522,7 @@ document.addEventListener('DOMContentLoaded', () => {
     particles.forEach((p, idx) => {
       p.x += p.vx;
       p.y += p.vy;
-      p.vy += 0.05; // gravity
+      p.vy += 0.04;
       p.alpha *= p.life;
 
       fwCtx.save();
