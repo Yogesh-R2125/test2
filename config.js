@@ -30,7 +30,7 @@ const CONFIG = {
       question: "What happens when our families gather for festivals or events?",
       options: [
         "Everyone talks politics",
-        "Dharsan sneaks glances at you and looks for excuses to talk to you ❤️",
+        "Dharsan sneaks glances at you and looks for excuses to talk to you",
         "We just watch TV in silence",
         "We argue over sweets"
       ],
@@ -42,7 +42,7 @@ const CONFIG = {
       question: "What is the initial letter of the girl who stole Dharsan's heart?",
       options: [
         "Letter A",
-        "Letter D ✨",
+        "Letter D",
         "Letter S",
         "Letter M"
       ],
