@@ -29,12 +29,12 @@ const CONFIG = {
       title: "Clue #2: The Favorite Habit",
       question: "What happens when our families gather for festivals or events?",
       options: [
+        "Dharsan sneaks glances at you and looks for excuses to talk to you",
         "Everyone talks politics",
-        "Dharsan sneaks glances at you and looks for excuses to talk to you ❤️",
         "We just watch TV in silence",
         "We argue over sweets"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       hint: "Notice who always sits nearby during family functions?"
     },
     {
@@ -42,11 +42,11 @@ const CONFIG = {
       question: "What is the initial letter of the girl who stole Dharsan's heart?",
       options: [
         "Letter A",
-        "Letter D ✨",
+        "Letter R",
         "Letter S",
-        "Letter M"
+        "Letter D"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       hint: "It begins with D... and ends with an 'i'!"
     }
   ],
