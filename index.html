@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Story Written in the Stars ✨</title>
+  
+  <!-- SEO & Meta -->
+  <meta name="description" content="A unique interactive mystery experience created with love.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Dancing+Script:wght@600;700&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Ambient Starfield Canvas -->
+  <canvas id="starfieldCanvas"></canvas>
+  <canvas id="fireworksCanvas"></canvas>
+
+  <!-- Audio Controls Header -->
+  <div class="audio-control-bar">
+    <button id="soundToggleBtn" class="glass-pill-btn" aria-label="Toggle Sound Effects">
+      <i class="fa-solid fa-volume-high" id="soundIcon"></i>
+      <span id="soundText">Sound ON</span>
+    </button>
+  </div>
+
+  <!-- Progress Bar Header -->
+  <div class="progress-bar-container">
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-labels">
+      <span class="step-label active" id="step1Label"><i class="fa-solid fa-key"></i> Gateway</span>
+      <span class="step-label" id="step2Label"><i class="fa-solid fa-images"></i> Clues</span>
+      <span class="step-label" id="step3Label"><i class="fa-solid fa-star"></i> Constellation</span>
+      <span class="step-label" id="step4Label"><i class="fa-solid fa-envelope-open-text"></i> Reveal</span>
+    </div>
+  </div>
+
+  <!-- MAIN APP CONTAINER -->
+  <main class="app-viewport">
+
+    <!-- ================= CHAPTER 1: CRYPTIC GATEWAY ================= -->
+    <section id="chapter1" class="chapter-section active">
+      <div class="glass-card main-card">
+        <div class="badge-tag"><i class="fa-solid fa-lock"></i> Mystery Unfolding</div>
+        <h1 class="chapter-title">A Secret Written in the Stars</h1>
+        <p class="chapter-subtitle">Someone created this space for a very special person... Could it be you?</p>
+
+        <div class="riddle-box" id="riddleBox">
+          <div class="riddle-header">
+            <span class="riddle-counter" id="riddleCounter">Clue 1 of 3</span>
+            <span class="riddle-title" id="riddleTitle">The Connection</span>
+          </div>
+
+          <p class="riddle-question" id="riddleQuestion">Our families have known each other forever... but who is secretly your biggest admirer?</p>
+
+          <div class="riddle-options" id="riddleOptions">
+            <!-- Dynamically populated from JS -->
+          </div>
+
+          <div class="riddle-hint-box" id="riddleHintBox">
+            <i class="fa-solid fa-lightbulb"></i> <span id="riddleHintText">Look closely... someone in the family has had eyes only for you!</span>
+          </div>
+        </div>
+
+        <div class="chapter-footer">
+          <button id="nextRiddleBtn" class="btn-primary" disabled>
+            <span>Continue Journey</span> <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHAPTER 2: MEMORY CLUE CAROUSEL ================= -->
+    <section id="chapter2" class="chapter-section">
+      <div class="glass-card main-card width-wide">
+        <div class="badge-tag"><i class="fa-solid fa-heart"></i> Shared Nostalgia</div>
+        <h2 class="chapter-title">Whispers of the Past</h2>
+        <p class="chapter-subtitle">Flip the polaroid cards below to uncover clues about who sent you this message...</p>
+
+        <div class="polaroid-grid" id="polaroidGrid">
+          <!-- Dynamically generated polaroid flip cards -->
+        </div>
+
+        <div class="unlock-banner" id="unlockBanner">
+          <p><i class="fa-solid fa-sparkles"></i> Unlocked all memory clues! One final puzzle remains to reveal the mystery name.</p>
+          <button id="toConstellationBtn" class="btn-primary">
+            <span>Enter Constellation Star Lock</span> <i class="fa-solid fa-meteor"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CHAPTER 3: CONSTELLATION STAR PUZZLE ================= -->
+    <section id="chapter3" class="chapter-section">
+      <div class="glass-card main-card">
+        <div class="badge-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> Name Spell</div>
+        <h2 class="chapter-title">The Constellation Puzzle</h2>
+        <p class="chapter-subtitle">Tap the glowing stars to unscramble the secret 8-letter name!</p>
+
+        <!-- Dynamic Slots for Letters -->
+        <div class="letter-slots-container" id="letterSlotsContainer">
+          <!-- Slots rendered dynamically: _ _ _ _ _ _ _ _ _ -->
+        </div>
+
+        <!-- Orbiting Floating Stars -->
+        <div class="star-orbit-field" id="starOrbitField">
+          <!-- Star nodes rendered dynamically -->
+        </div>
+
+        <div class="hint-message-box" id="constellationHint">
+          <i class="fa-solid fa-circle-info"></i> Click all 9 twinkling stars to complete the spell!
+        </div>
+
+        <button id="toProposalBtn" class="btn-primary btn-glow" style="display: none;">
+          <span>Reveal the Secret</span> <i class="fa-solid fa-crown"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ================= CHAPTER 4: THE BIG REVEAL & PROPOSAL ================= -->
+    <section id="chapter4" class="chapter-section">
+      <div class="proposal-container">
+
+        <!-- Animated Envelope -->
+        <div class="envelope-wrapper" id="envelopeWrapper">
+          <div class="envelope" id="envelope">
+            <div class="envelope-front">
+              <div class="wax-seal" id="waxSeal">
+                <i class="fa-solid fa-heart"></i>
+                <span>Open Me</span>
+              </div>
+            </div>
+            <div class="envelope-top"></div>
+          </div>
+        </div>
+
+        <!-- Letter Card (Revealed on click) -->
+        <div class="letter-card glass-card" id="letterCard">
+          <div class="letter-header">
+            <span class="letter-badge"><i class="fa-solid fa-feather"></i> From Dharsan</span>
+            <h2 class="letter-salutation" id="salutationText">My Dearest Dharsini,</h2>
+          </div>
+
+          <div class="letter-body" id="letterBody">
+            <!-- Populated from CONFIG.letter -->
+          </div>
+
+          <div class="letter-closing-box">
+            <p class="closing-text" id="closingText">Forever & Always Yours,</p>
+            <h3 class="signature-text" id="signatureText">Dharsan ❤️</h3>
+          </div>
+
+          <!-- Proposal Question Container -->
+          <div class="proposal-question-box" id="proposalQuestionBox">
+            <h2 class="proposal-question" id="proposalQuestion">Dharsini, will you be mine forever?</h2>
+            
+            <div class="proposal-buttons">
+              <button id="yesBtn" class="btn-proposal-yes">
+                <i class="fa-solid fa-heart"></i> <span id="yesBtnText">YES! 💖</span>
+              </button>
+              
+              <div class="no-btn-wrapper" id="noBtnWrapper">
+                <button id="noBtn" class="btn-proposal-no">
+                  <span id="noBtnText">No 😜</span>
+                </button>
+                <div class="no-tooltip" id="noTooltip">Nice try! 😉</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= CELEBRATION MODAL ================= -->
+  <div id="celebrationModal" class="modal-overlay">
+    <div class="celebration-card glass-card">
+      <div class="celebration-icon">
+        <i class="fa-solid fa-heart-circle-check"></i>
+      </div>
+      <h1 class="celebration-title">SHE SAID YES! 🎉❤️</h1>
+      <p class="celebration-subtitle">You made Dharsan the happiest person in the world!</p>
+      
+      <div class="heart-pulse-box">
+        <div class="names-pair">
+          <span>Dharsan</span>
+          <i class="fa-solid fa-infinity"></i>
+          <span>Dharshani</span>
+        </div>
+      </div>
+
+      <p class="whatsapp-prompt-text">Send your response directly to Dharsan on WhatsApp!</p>
+
+      <div class="celebration-actions">
+        <a id="whatsappBtn" href="#" target="_blank" class="btn-whatsapp">
+          <i class="fa-brands fa-whatsapp"></i> Send Love Message to Dharsan
+        </a>
+        <button id="replayBtn" class="btn-secondary">
+          <i class="fa-solid fa-rotate-right"></i> Relive the Magic
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Config & Logic Scripts -->
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
