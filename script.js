@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const target = CONFIG.targetLetters; // ["D", "H", "A", "R", "S", "H", "A", "N", "I"]
 
-    // Render Slots
+    // Render Slots (Initially empty)
     target.forEach(() => {
       const slot = document.createElement('div');
       slot.className = 'letter-slot';
@@ -268,15 +268,18 @@ document.addEventListener('DOMContentLoaded', () => {
       letterSlotsContainer.appendChild(slot);
     });
 
-    // Shuffled Letters
-    const shuffledLetters = [...target].sort(() => Math.random() - 0.5);
+    // Pair each letter with its exact position in the name
+    const starItems = target.map((letter, originalIndex) => ({ letter, originalIndex }));
 
-    shuffledLetters.forEach((letter, i) => {
+    // Shuffle stars in random scatter order
+    const shuffledItems = [...starItems].sort(() => Math.random() - 0.5);
+
+    shuffledItems.forEach((item, i) => {
       const star = document.createElement('div');
       star.className = 'star-node';
       star.innerText = '★';
 
-      // Distribute nicely within bounds
+      // Distribute randomly in orbit field
       const posX = 6 + Math.random() * 78;
       const posY = 10 + Math.random() * 70;
 
@@ -289,17 +292,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (star.classList.contains('collected')) return;
 
         star.classList.add('collected');
-        star.innerText = letter;
+        star.innerText = item.letter;
 
-        collectedLetters.push(letter);
+        collectedLetters.push(item);
         const currentCount = collectedLetters.length;
 
         playStarSparkleNote(currentCount - 1);
 
+        // Fill the letter into its EXACT original slot in the name!
         const slots = letterSlotsContainer.querySelectorAll('.letter-slot');
-        if (slots[currentCount - 1]) {
-          slots[currentCount - 1].innerText = target[currentCount - 1];
-          slots[currentCount - 1].classList.add('filled');
+        if (slots[item.originalIndex]) {
+          slots[item.originalIndex].innerText = item.letter;
+          slots[item.originalIndex].classList.add('filled');
         }
 
         if (currentCount === target.length) {
