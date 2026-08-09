@@ -29,8 +29,8 @@ const CONFIG = {
       title: "Clue #2: The Favorite Habit",
       question: "What happens when our families gather for festivals or events?",
       options: [
-        "Everyone talks politics",
         "Dharsan sneaks glances at you and looks for excuses to talk to you",
+        "Everyone talks politics",
         "We just watch TV in silence",
         "We argue over sweets"
       ],
@@ -44,7 +44,7 @@ const CONFIG = {
         "Letter A",
         "Letter D",
         "Letter S",
-        "Letter M"
+        "Letter D"
       ],
       correctIndex: 1,
       hint: "It begins with D... and ends with an 'i'!"
