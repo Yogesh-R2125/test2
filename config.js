@@ -86,10 +86,10 @@ const CONFIG = {
   letter: {
     salutation: "My Dearest Dharshani,",
     paragraphs: [
-      "If you're reading this, you've unlocked all the clues that lead straight to my heart.",
-      "For a long time, I kept these feelings wrapped in silent smiles during every family gathering. Being relatives was how we started, but loving you is how I want to spend the rest of my life.",
-      "You bring so much light, laughter, and warmth into my world. I built this special space just for you, to tell you something I've held inside for so long...",
-      "I don't just want you to be a part of my family's story—I want you to be the main character in my life story forever."
+      "I loved you because of your silence and those cute little smiles.",
+      "Unnodha silence-la kooda oru azhagu irukku… nee pesama irundhaalum, un eyes neraya pesum. 🥹",
+      "Aana unnodha andha cute smile… adha paakumbodhu enakku theriyama naanum smile panniduven. ❤️",
+      "Unnodha innocence, silence, andha smile… idhellam dhaan ennoda heart-ku unna romba special-a feel panna vechuchu."
     ],
     closing: "Forever & Always Yours,",
     signature: "Dharsan"
