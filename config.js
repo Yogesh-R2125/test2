@@ -34,7 +34,7 @@ const CONFIG = {
         "We just watch TV in silence",
         "We argue over sweets"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       hint: "Notice who always sits nearby during family functions?"
     },
     {
@@ -44,7 +44,7 @@ const CONFIG = {
         "Letter A",
         "Letter D",
         "Letter S",
-        "Letter D"
+        "Letter M"
       ],
       correctIndex: 1,
       hint: "It begins with D... and ends with an 'i'!"
