@@ -204,20 +204,39 @@ document.addEventListener('DOMContentLoaded', () => {
     CONFIG.memories.forEach((mem, idx) => {
       const card = document.createElement('div');
       card.className = 'polaroid-card';
-      const rot = (idx % 2 === 0 ? 1 : -1) * (2 + idx);
+      const rot = (idx % 2 === 0 ? 1 : -1) * (1.5 + idx * 0.5);
+      card.style.transform = `rotate(${rot}deg)`;
+      card.dataset.rot = rot;
 
       card.innerHTML = `
         <div class="polaroid-inner">
-          <div class="polaroid-front" style="transform: rotate(${rot}deg)">
+          <div class="polaroid-front">
+            <div class="polaroid-badge">Tap to flip ✨</div>
             <div class="polaroid-icon">${mem.icon}</div>
             <div class="polaroid-title">${mem.title}</div>
             <div class="polaroid-sub">${mem.date}</div>
           </div>
           <div class="polaroid-back">
-            <p class="polaroid-back-text">${mem.text}</p>
+            <div class="polaroid-back-header">
+              <span class="polaroid-back-icon">${mem.icon}</span>
+              <span class="polaroid-back-title">${mem.title}</span>
+            </div>
+            <div class="polaroid-back-body">
+              <p class="polaroid-back-text">${mem.text}</p>
+            </div>
+            <div class="polaroid-back-footer">
+              <span><i class="fa-solid fa-heart"></i> Memory Clue</span>
+            </div>
           </div>
         </div>
       `;
+
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = `rotate(0deg) translateY(-6px) scale(1.02)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = `rotate(${card.dataset.rot}deg)`;
+      });
 
       const flipCard = () => {
         if (!card.classList.contains('flipped')) {

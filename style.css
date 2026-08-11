@@ -389,15 +389,19 @@ html, body {
 /* ================= CHAPTER 2: POLAROID GRID ================= */
 .polaroid-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
   margin-bottom: 24px;
+  width: 100%;
 }
 
 .polaroid-card {
   perspective: 1000px;
-  height: clamp(170px, 45vw, 220px);
+  height: 290px;
+  width: 100%;
   cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
 }
 
 .polaroid-inner {
@@ -414,11 +418,24 @@ html, body {
 
 .polaroid-front, .polaroid-back {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 14px;
-  padding: 12px 8px;
+  -webkit-backface-visibility: hidden;
+  border-radius: 18px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.polaroid-front {
+  background: #ffffff;
+  color: #222;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  border: 7px solid #fff;
+  border-bottom: 26px solid #fff;
+  padding: 24px 16px 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -426,45 +443,114 @@ html, body {
   text-align: center;
 }
 
-.polaroid-front {
-  background: #ffffff;
-  color: #222;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  border: 5px solid #fff;
-  border-bottom: 18px solid #fff;
+.polaroid-badge {
+  position: absolute;
+  top: 8px;
+  font-size: 0.7rem;
+  color: var(--primary-pink);
+  font-weight: 700;
+  background: rgba(255, 42, 109, 0.1);
+  padding: 3px 10px;
+  border-radius: 12px;
+  letter-spacing: 0.3px;
 }
 
 .polaroid-icon {
-  font-size: clamp(2rem, 8vw, 2.6rem);
-  margin-bottom: 8px;
+  font-size: clamp(2.4rem, 6vw, 3rem);
+  margin-bottom: 10px;
 }
 
 .polaroid-title {
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: clamp(0.78rem, 2.8vw, 0.9rem);
+  font-weight: 800;
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
   color: #111;
-  line-height: 1.2;
+  line-height: 1.25;
+  margin-bottom: 4px;
 }
 
 .polaroid-sub {
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   color: #666;
-  margin-top: 2px;
+  font-weight: 500;
 }
 
 .polaroid-back {
-  background: linear-gradient(135deg, #1f0b2e, #3a0d33);
-  border: 1px solid var(--primary-pink);
+  background: linear-gradient(145deg, #1a0624, #330a38);
+  border: 1.5px solid rgba(255, 42, 109, 0.5);
   color: #fff;
   transform: rotateY(180deg);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 42, 109, 0.15);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.polaroid-back-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: 8px;
+  width: 100%;
+}
+
+.polaroid-back-icon {
+  font-size: 1.2rem;
+}
+
+.polaroid-back-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--gold-accent);
+  letter-spacing: 0.3px;
+}
+
+.polaroid-back-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;
+  overflow: hidden;
 }
 
 .polaroid-back-text {
-  font-size: clamp(0.75rem, 2.7vw, 0.85rem);
-  line-height: 1.4;
+  font-size: clamp(0.8rem, 2.3vw, 0.9rem);
+  line-height: 1.55;
   color: var(--text-secondary);
+  max-height: 175px;
+  overflow-y: auto;
+  padding: 0 4px;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.polaroid-back-text::-webkit-scrollbar {
+  width: 4px;
+}
+.polaroid-back-text::-webkit-scrollbar-thumb {
+  background: var(--primary-pink);
+  border-radius: 4px;
+}
+
+.polaroid-back-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 6px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.polaroid-back-footer i {
+  color: var(--primary-pink);
 }
 
 .unlock-banner {

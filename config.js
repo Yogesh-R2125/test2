@@ -15,24 +15,20 @@ const CONFIG = {
   riddles: [
     {
       title: "Clue #1: The Connection",
-      question: "Our families have known each other forever... but who is secretly your biggest admirer?",
+      question: "Neenga expect pannave illatha oru visayatha discover panna ready ahh?",
       options: [
-        "A distant cousin who forgets your birthday",
-        "Someone who smiles every time you walk into the room...",
-        "A random secret agent",
-        "Nobody special"
+        "Yes Dharsan! I am ready to discover the secret!",
+        "No"
       ],
-      correctIndex: 1,
-      hint: "Look closely... someone in the family has had eyes only for you!"
+      correctIndex: 0,
+      hint: "It's a secret only I know!"
     },
     {
       title: "Clue #2: The Favorite Habit",
-      question: "What happens when our families gather for festivals or events?",
+      question: "Feelings naala namma oruthangala paakura vidhame change agalam nu nenaikireengala",
       options: [
-        "Dharsan sneaks glances at you and looks for excuses to talk to you",
-        "Everyone talks politics",
-        "We just watch TV in silence",
-        "We argue over sweets"
+        "Yes Dharsan! I am ready to discover the secret!",
+        "No"
       ],
       correctIndex: 0,
       hint: "Notice who always sits nearby during family functions?"
@@ -57,25 +53,25 @@ const CONFIG = {
       title: "Family Gatherings",
       date: "Memories We Share",
       icon: "✨",
-      text: "From childhood celebrations to relative functions, seeing you always turned an ordinary day into something magical."
+      text: "Chinna vayasula irundhu celebrations la irundhaalum, relative functions la irundhaalum, unna paakumbodhellam oru ordinary day kooda romba special-ah, magical-ah feel aagum. ❤️✨"
     },
     {
       title: "That Unspoken Smile",
       date: "A Secret Connection",
       icon: "🌸",
-      text: "Across crowd-filled rooms, a single shared look between us said more than a thousand words."
+      text: "Evlo per namma suthi irundhaalum, unnodu oru small eye contact kooda enakku romba special-ah irukkum… appove enakku puriyaama, un mela enakku oru different-aana feeling vandhuduchu. ❤️✨"
     },
     {
       title: "Beyond Relatives",
       date: "Something Deeper",
       icon: "💖",
-      text: "What started as family ties grew into the warmest friendship, and then... into the deepest love of my life."
+      text: "Family relationship-aa start aana namma bond, konjam konjam-aa oru beautiful friendship-aa maaruchu… aana adha vida theriyama, en life-la romba deep-aana oru feeling-aa maariduchu… ❤️✨"
     },
     {
       title: "The Mystery Solved",
       date: "Who is She?",
       icon: "👑",
-      text: "Her name has 9 letters. Beautiful, kind, witty, and absolutely unforgettable..."
+      text: "Avaloda name-la 9 letters irukku… beautiful, kind, witty, and honestly, once you know her, avala marakkave mudiyadhu. ❤️✨"
     }
   ],
 
